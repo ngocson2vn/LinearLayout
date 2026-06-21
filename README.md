@@ -16,17 +16,17 @@ Let $\boldsymbol{e}_i,\ 0 \ll i < N$ denote the **standard basis** of $U$.
 
 With any vector $\boldsymbol{u} = (u_0, \dots, u_{N-1}) \in U$, by definition, it can be represented as a linear combination of $\boldsymbol{e}_i$:
 
-$\boldsymbol{u} = u_0\boldsymbol{e}_0 + \cdots + u_{N-1}\boldsymbol{e}_{N-1}$
+$`\boldsymbol{u} = u_0\boldsymbol{e}_0 + \cdots + u_{N-1}\boldsymbol{e}_{N-1}`$
 
 Then, $L(\boldsymbol{u})$ can be computed as follows:
 
-$
+$`
 \begin{aligned}
 L(\boldsymbol{u}) &= L(u_0\boldsymbol{e}_0 + \cdots + u_{N-1}\boldsymbol{e}_{N-1}) \\
               &= L(u_0\boldsymbol{e}_0) + \cdots + L(u_{N-1}\boldsymbol{e}_{N-1}) \\
               &= u_0L(\boldsymbol{e}_0) + \cdots + u_{N-1}L(\boldsymbol{e}_{N-1}) 
 \end{aligned}
-$
+`$
 
 Obviously, if we know $L(\boldsymbol{e}_i)$, we can compute $L(\boldsymbol{u})$ for any $\boldsymbol{u} \in U$.
 
@@ -68,17 +68,17 @@ Let $\boldsymbol{u}_i$ denote the standard basis vectors in $F_2^{N_1}$ and $\bo
 For $0 \leq k < N_1$: 
 - The basis vector maps entirely to the first component.
 
-  $\phi^{-1}(\boldsymbol{e}_k) = \big(\boldsymbol{u}_k, \boldsymbol{0}^{N_2}\big)$, where $\boldsymbol{0}^{N_2}$ is the zero vector in $F_2^{N_2}$
+  $`\phi^{-1}(\boldsymbol{e}_k) = \big(\boldsymbol{u}_k, \boldsymbol{0}^{N_2}\big)`$, where $\boldsymbol{0}^{N_2}$ is the zero vector in $F_2^{N_2}$
 
 For $N_1 \leq k < N_1 + N_2$: 
 - The basis vector maps entirely to the second component.
 
-  $\phi^{-1}(\boldsymbol{e}_k) = \big(\boldsymbol{0}^{N_1}, \boldsymbol{v}_{k - N_1}\big)$, where $\boldsymbol{0}^{N_1}$ is the zero vector in $F_2^{N_1}$
+  $`\phi^{-1}(\boldsymbol{e}_k) = \big(\boldsymbol{0}^{N_1}, \boldsymbol{v}_{k - N_1}\big)`$, where $\boldsymbol{0}^{N_1}$ is the zero vector in $F_2^{N_1}$
 
 Thus,
 
 For $0 \leq k < N_1$: 
-- $L(\boldsymbol{e}_k) = (L_1 \times L_2)\big(\boldsymbol{u}_k, \boldsymbol{0}^{N_2}\big) = \big(L_1(\boldsymbol{u}_k), L_2(\boldsymbol{0}^{N_2})\big) = \big(L_1(\boldsymbol{u}_k), \boldsymbol{0}^{D_2}\big)$, where $\boldsymbol{0}^{D_2}$ is zero vector in $F_2^{D_2}$
+- $`L(\boldsymbol{e}_k) = (L_1 \times L_2)\big(\boldsymbol{u}_k, \boldsymbol{0}^{N_2}\big) = \big(L_1(\boldsymbol{u}_k), L_2(\boldsymbol{0}^{N_2})\big) = \big(L_1(\boldsymbol{u}_k), \boldsymbol{0}^{D_2}\big)`$, where $\boldsymbol{0}^{D_2}$ is zero vector in $F_2^{D_2}$
 
 For $N_1 \leq k < N_1 + N_2$: 
-- $L(\boldsymbol{e}_k) = (L_1 \times L_2)\big(\boldsymbol{0}^{N_1}, \boldsymbol{v}_{k - N_1}\big) = \big(L_1(\boldsymbol{0}^{N_1}), L_2(\boldsymbol{v}_{k - N_1})\big) = \big(\boldsymbol{0}^{D_1}, L_2(\boldsymbol{v}_{k - N_1})\big)$, where $\boldsymbol{0}^{D_1}$ is zero vector in $F_2^{D_1}$
+- $`L(\boldsymbol{e}_k) = (L_1 \times L_2)\big(\boldsymbol{0}^{N_1}, \boldsymbol{v}_{k - N_1}\big) = \big(L_1(\boldsymbol{0}^{N_1}), L_2(\boldsymbol{v}_{k - N_1})\big) = \big(\boldsymbol{0}^{D_1}, L_2(\boldsymbol{v}_{k - N_1})\big)`$, where $\boldsymbol{0}^{D_1}$ is zero vector in $F_2^{D_1}$
