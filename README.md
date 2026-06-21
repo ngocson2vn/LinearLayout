@@ -33,6 +33,7 @@ Obviously, if we know $L(\boldsymbol{e}_i)$, we can compute $L(\boldsymbol{u})$ 
 Therefore, any linear map is completely defined by its action on the basis of the input vector space $L(\boldsymbol{e}_i)$.
 
 ## Direct Sum Of Two Linear Maps
+### Simple case
 Given the following two linear maps:
 
 $L_1:\ F_2^{N_1} \rightarrow F_2^{D_1}$
@@ -57,7 +58,7 @@ Let $L = (L_1 \times L_2) \circ \phi^{-1}$ denote a composition between $(L_1 \t
 
 $L:\ F_2^{N_1+N_2} \rightarrow F_2^{D_1} \times F_2^{D_2}$
 
-Let $\boldsymbol{e}_k,\ 0 \ll k < N_1 + N_2$ denote **standard basis** in $F_2^{N_1+N_2}$
+Let $\boldsymbol{e}_k,\ 0 \ll k < N_1 + N_2$ denote the **standard basis** in $F_2^{N_1+N_2}$
 
 We can compute $L(\boldsymbol{e}_k),\ 0 \ll k < N_1 + N_2$ via $L_1$, $L_2$ as follows:
 
@@ -82,3 +83,67 @@ For $0 \leq k < N_1$:
 
 For $N_1 \leq k < N_1 + N_2$: 
 - $`L(\boldsymbol{e}_k) = (L_1 \times L_2)\big(\boldsymbol{0}^{N_1}, \boldsymbol{v}_{k - N_1}\big) = \big(L_1(\boldsymbol{0}^{N_1}), L_2(\boldsymbol{v}_{k - N_1})\big) = \big(\boldsymbol{0}^{D_1}, L_2(\boldsymbol{v}_{k - N_1})\big)`$, where $\boldsymbol{0}^{D_1}$ is zero vector in $F_2^{D_1}$
+<br/><br/>
+
+### Merging output space case
+Given the following linear maps:
+
+$`L_1: \ F_2^{N_1} \rightarrow F_2^{Q_{dim1}} \times F_2^{Q_{dim0}}`$
+
+$`L_2: \ F_2^{N_2} \rightarrow F_2^{P_{dim1}} \times F_2^{P_{dim0}}`$
+<br/><br/>
+
+$`L_1 \times L_2:\ F_2^{N_1} \times F_2^{N_2} \rightarrow (F_2^{Q_{dim1}} \times F_2^{Q_{dim0}}) \times (F_2^{P_{dim1}} \times F_2^{P_{dim0}})`$
+
+$`\phi:\ F_2^{N_1} \times F_2^{N_2} \rightarrow F_2^{N_1+N_2}`$
+
+$`\phi^{-1}:\ F_2^{N_1+N_2} \rightarrow F_2^{N_1} \times F_2^{N_2}`$
+
+$`L:\ F_2^{N_1+N_2} \rightarrow (F_2^{Q_{dim1}} \times F_2^{Q_{dim0}}) \times (F_2^{P_{dim1}} \times F_2^{P_{dim0}})`$
+<br/><br/>
+
+Similarly, we can calculate $L(e_k)$ as follows:
+
+For $0 \leq k < N_1$: 
+- $`L(\boldsymbol{e}_k) = (L_1 \times L_2)\big(\boldsymbol{u}_k, \boldsymbol{0}^{N_2}\big) = \big(L_1(\boldsymbol{u}_k), L_2(\boldsymbol{0}^{N_2})\big) = \big(L_1(\boldsymbol{u}_k), \boldsymbol{0}^{P}\big)`$, where $\boldsymbol{0}^{P}$ is zero vector in $`(F_2^{P_{dim1}} \times F_2^{P_{dim0}})`$
+
+For $N_1 \leq k < N_1 + N_2$: 
+- $`L(\boldsymbol{e}_k) = (L_1 \times L_2)\big(\boldsymbol{0}^{N_1}, \boldsymbol{v}_{k - N_1}\big) = \big(L_1(\boldsymbol{0}^{N_1}), L_2(\boldsymbol{v}_{k - N_1})\big) = \big(\boldsymbol{0}^{Q}, L_2(\boldsymbol{v}_{k - N_1})\big)`$, where $\boldsymbol{0}^{Q}$ is zero vector in $`(F_2^{Q_{dim1}} \times F_2^{Q_{dim0}})`$
+<br/><br/>
+
+Let $R$ denote the following **Canonical Isomorphism** (Regrouping):
+
+$R: \ (F_2^{Q_{dim1}} \times F_2^{Q_{dim0}}) \times (F_2^{P_{dim1}} \times F_2^{P_{dim0}}) \rightarrow (F_2^{Q_{dim1}} \times F_2^{P_{dim1}}) \times (F_2^{Q_{dim0}} \times F_2^{P_{dim0}})$
+
+Let $\Omega$ denote the following **Canonical Isomorphism** (Flattening):
+
+$\Omega: \ (F_2^{Q_{dim1}} \times F_2^{P_{dim1}}) \times (F_2^{Q_{dim0}} \times F_2^{P_{dim0}}) \rightarrow F_2^{Q_{dim1} + P_{dim1}} \times F_2^{Q_{dim0} + P_{dim0}}$
+
+Let $T = \Omega \circ R \circ L$ denote a composition of $\Omega$ and $R$ and $L$. Then, $T$ is also a linear map:
+
+$T: \ F_2^{N_1+N_2} \rightarrow F_2^{Q_{dim1} + P_{dim1}} \times F_2^{Q_{dim0} + P_{dim0}}$
+<br/><br/>
+
+Now let's calculate $T(e_k)$:
+
+$T(e_k) = (\Omega \circ R \circ L)(e_k) = \Omega(R(L(e_k)))$
+
+For $0 \le k < N_1$
+- $`T(e_k) = \Omega \big( R\big((L_1(\boldsymbol{u}_k)^{Q_{dim1}}, L_1(\boldsymbol{u}_k)^{Q_{dim0}}), (\boldsymbol{0}^{P_{dim1}}, \boldsymbol{0}^{P_{dim0}})\big)\big) = \Omega\big((L_1(\boldsymbol{u}_k)^{Q_{dim1}}, \boldsymbol{0}^{P_{dim1}}), (L_1(\boldsymbol{u}_k)^{Q_{dim0}}, \boldsymbol{0}^{P_{dim0}})\big)`$
+
+  Since $`L_1(\boldsymbol{u}_k)^{Q_{dim1}}`$ and $`L_1(\boldsymbol{u}_k)^{Q_{dim0}}`$ are binary vectors, we can represent them by the integers $t_{k,dim1}$ and $t_{k,dim0}$, respectively.
+
+  The flattened forms of $`(L_1(\boldsymbol{u}_k)^{Q_{dim1}}, \boldsymbol{0}^{P_{dim1}})`$ and $`(L_1(\boldsymbol{u}_k)^{Q_{dim0}}, \boldsymbol{0}^{P_{dim0}})`$ are binary vectors whose higher-order bits are zero. 
+  
+  Obviously, they can be reduced exactly to the integers $t_{k,dim1}$ and $t_{k,dim0}$, respectively.
+
+  $T(e_k) = (t_{k,dim1}$, $t_{k,dim0})$  
+<br/>
+
+For $N_1 \le k < N_1 + N_2$, denote $h = k - N_1$
+- $`T(e_k) = \Omega\big(R\big((\boldsymbol{0}^{Q_{dim1}}, \boldsymbol{0}^{Q_{dim0}}), (L_2(\boldsymbol{v}_h)^{P_{dim1}}, L_2(\boldsymbol{v}_h)^{P_{dim0}})\big)\big) = \Omega\big((\boldsymbol{0}^{Q_{dim1}}, L_2(\boldsymbol{v}_h)^{P_{dim1}}), (\boldsymbol{0}^{Q_{dim0}}, L_2(\boldsymbol{v}_h)^{P_{dim0}})\big)`$
+
+  Similarly, we can represent $`L_2(\boldsymbol{v}_h)^{P_{dim1}}`$ and $`L_2(\boldsymbol{v}_h)^{P_{dim0}}`$ by the integers $w_{k,dim1}$ and $w_{k,dim0}$, respectively.
+
+  $T(e_k) = (w_{k,dim1} \ll Q_{dim1}, w_{k,dim0} \ll Q_{dim0})$
+<br/><br/>
