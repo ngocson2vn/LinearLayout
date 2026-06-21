@@ -107,8 +107,10 @@ Similarly, we can calculate $L(e_k)$ as follows:
 For $0 \leq k < N_1$: 
 - $`L(\boldsymbol{e}_k) = (L_1 \times L_2)\big(\boldsymbol{u}_k, \boldsymbol{0}^{N_2}\big) = \big(L_1(\boldsymbol{u}_k), L_2(\boldsymbol{0}^{N_2})\big) = \big(L_1(\boldsymbol{u}_k), \boldsymbol{0}^{P}\big)`$, where $\boldsymbol{0}^{P}$ is zero vector in $`(F_2^{P_{dim1}} \times F_2^{P_{dim0}})`$
 
-For $N_1 \leq k < N_1 + N_2$: 
-- $`L(\boldsymbol{e}_k) = (L_1 \times L_2)\big(\boldsymbol{0}^{N_1}, \boldsymbol{v}_{k - N_1}\big) = \big(L_1(\boldsymbol{0}^{N_1}), L_2(\boldsymbol{v}_{k - N_1})\big) = \big(\boldsymbol{0}^{Q}, L_2(\boldsymbol{v}_{k - N_1})\big)`$, where $\boldsymbol{0}^{Q}$ is zero vector in $`(F_2^{Q_{dim1}} \times F_2^{Q_{dim0}})`$
+<br/>
+
+For $N_1 \le k < N_1 + N_2$, denote $h = k - N_1$
+- $`L(\boldsymbol{e}_k) = (L_1 \times L_2)\big(\boldsymbol{0}^{N_1}, \boldsymbol{v}_{h}\big) = \big(L_1(\boldsymbol{0}^{N_1}), L_2(\boldsymbol{v}_{h})\big) = \big(\boldsymbol{0}^{Q}, L_2(\boldsymbol{v}_{h})\big)`$, where $\boldsymbol{0}^{Q}$ is zero vector in $`(F_2^{Q_{dim1}} \times F_2^{Q_{dim0}})`$
 <br/><br/>
 
 Let $R$ denote the following **Canonical Isomorphism** (Regrouping):
@@ -140,7 +142,7 @@ For $0 \le k < N_1$
   $T(e_k) = (t_{k,dim1}$, $t_{k,dim0})$  
 <br/>
 
-For $N_1 \le k < N_1 + N_2$, denote $h = k - N_1$
+For $N_1 \le k < N_1 + N_2$
 - $`T(e_k) = \Omega\big(R\big((\boldsymbol{0}^{Q_{dim1}}, \boldsymbol{0}^{Q_{dim0}}), (L_2(\boldsymbol{v}_h)^{P_{dim1}}, L_2(\boldsymbol{v}_h)^{P_{dim0}})\big)\big) = \Omega\big((\boldsymbol{0}^{Q_{dim1}}, L_2(\boldsymbol{v}_h)^{P_{dim1}}), (\boldsymbol{0}^{Q_{dim0}}, L_2(\boldsymbol{v}_h)^{P_{dim0}})\big)`$
 
   Similarly, we can represent $`L_2(\boldsymbol{v}_h)^{P_{dim1}}`$ and $`L_2(\boldsymbol{v}_h)^{P_{dim0}}`$ by the integers $w_{k,dim1}$ and $w_{k,dim0}$, respectively.
