@@ -6,6 +6,8 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 project(LinearLayout CXX C)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated -Wno-deprecated-declarations")
+
 
 # #########
 # LLVM
@@ -16,6 +18,11 @@ add_subdirectory(llvm-project/llvm ${LLVM_BINARY_DIR})
 # LLVM and MLIR headers
 include_directories(${PROJECT_SOURCE_DIR}/llvm-project/llvm/include)
 include_directories(${PROJECT_SOURCE_DIR}/llvm-project/mlir/include)
+
+# Some headers are generated automatically, which is why we need to include the following directories
+include_directories(${LLVM_BINARY_DIR}/include)
+include_directories(${LLVM_BINARY_DIR}/tools/mlir/include)
+
 include_directories(".")
 include_directories(third_party)
 
@@ -28,6 +35,7 @@ add_library(LinearLayout
 )
 
 add_dependencies(LinearLayout
+  LLVMSupport
   MLIRIR
   MLIRLLVMDialect
   f2reduce
@@ -43,6 +51,7 @@ target_link_libraries(main PRIVATE
   LinearLayout
   # MLIR core
   MLIRIR
+  f2reduce
 )
 
 mlir_check_all_link_libraries(main)
