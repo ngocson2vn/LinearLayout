@@ -81,10 +81,19 @@ Thus,
 For $0 \leq k < N_1$: 
 - $`L(\boldsymbol{e}_k) = (L_1 \times L_2)\big(\boldsymbol{u}_k, \boldsymbol{0}^{N_2}\big) = \big(L_1(\boldsymbol{u}_k), L_2(\boldsymbol{0}^{N_2})\big) = \big(L_1(\boldsymbol{u}_k), \boldsymbol{0}^{D_2}\big)`$, where $\boldsymbol{0}^{D_2}$ is zero vector in $F_2^{D_2}$
 
-For $N_1 \leq k < N_1 + N_2$: 
-- $`L(\boldsymbol{e}_k) = (L_1 \times L_2)\big(\boldsymbol{0}^{N_1}, \boldsymbol{v}_{k - N_1}\big) = \big(L_1(\boldsymbol{0}^{N_1}), L_2(\boldsymbol{v}_{k - N_1})\big) = \big(\boldsymbol{0}^{D_1}, L_2(\boldsymbol{v}_{k - N_1})\big)`$, where $\boldsymbol{0}^{D_1}$ is zero vector in $F_2^{D_1}$
+  Since $`L_1(\boldsymbol{u}_k)`$ is a binary vector of $N_1$ elements, we can represent it by an integer $t_{1k}$
+
+  So $`L(\boldsymbol{e}_k) = (t_{1k}, 0)`$
 <br/><br/>
 
+For $N_1 \leq k < N_1 + N_2$: 
+- $`L(\boldsymbol{e}_k) = (L_1 \times L_2)\big(\boldsymbol{0}^{N_1}, \boldsymbol{v}_{k - N_1}\big) = \big(L_1(\boldsymbol{0}^{N_1}), L_2(\boldsymbol{v}_{k - N_1})\big) = \big(\boldsymbol{0}^{D_1}, L_2(\boldsymbol{v}_{k - N_1})\big)`$, where $\boldsymbol{0}^{D_1}$ is zero vector in $F_2^{D_1}$
+
+  Similarly, we can represent $`L_2(\boldsymbol{v}_{k - N_1})`$ by an integer $t_{2k}$.
+
+  So $`L(\boldsymbol{e}_k) = (0, t_{2k})`$
+
+<br/><br/>
 ### Merging output space case
 Given the following linear maps:
 
