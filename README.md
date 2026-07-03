@@ -94,7 +94,7 @@ For $N_1 \leq k < N_1 + N_2$:
   So $`L(\boldsymbol{e}_k) = (0, t_{2k})`$
 
 <br/><br/>
-### Merging output space case
+### Merging output subspaces case
 Given the following linear maps:
 
 $`L_1: \ F_2^{N_1} \rightarrow F_2^{Q_{dim1}} \times F_2^{Q_{dim0}}`$
