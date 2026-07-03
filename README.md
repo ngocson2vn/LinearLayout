@@ -160,7 +160,7 @@ For $N_1 \le k < N_1 + N_2$
 <br/><br/>
 
 ### C++ implementation
-The `LinearLayout operator*(LinearLayout inner, LinearLayout outer)` in [LinearLayout.cpp](./LinearLayout.cpp#754) covers both cases perfectly:
+The `LinearLayout operator*(LinearLayout inner, LinearLayout outer)` in [LinearLayout.cpp](./LinearLayout.cpp#L754) covers both cases perfectly:
 ```C++
 LinearLayout operator*(LinearLayout inner, LinearLayout outer) {
   // Check that dims common to outer and inner have the same relative order.
