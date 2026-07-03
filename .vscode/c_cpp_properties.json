@@ -1,0 +1,45 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "/usr/local/cuda-12.8/include",
+                "/usr/local/cuda-13.1/include",
+                "${workspaceFolder}",
+                "${workspaceFolder}/build",
+                "${workspaceFolder}/third_party/**",
+                "${workspaceFolder}/build/third_party",
+                "${workspaceFolder}/llvm-project/mlir/include",
+                "${workspaceFolder}/llvm-project/llvm/include",
+                "${workspaceFolder}/llvm-project/mlir/include",
+                "${workspaceFolder}/llvm-project/build/include",
+                "${workspaceFolder}/llvm-project/build/tools/mlir/include"
+            ],
+            "defines": [
+                "GET_OP_CLASSES",
+                "GEN_PASS_REGISTRATION"
+            ],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "linux-gcc-x64",
+            "browse": {
+                "path": [
+                    "/usr/local/cuda-12.8/include",
+                    "/usr/local/cuda-13.1/include",
+                    "${workspaceFolder}/build",
+                    "${workspaceFolder}/third_party/**",
+                    "${workspaceFolder}/build/third_party",
+                    "${workspaceFolder}/llvm-project/mlir/include",
+                    "${workspaceFolder}/llvm-project/llvm/include",
+                    "${workspaceFolder}/llvm-project/mlir/include",
+                    "${workspaceFolder}/llvm-project/build/include",
+                    "${workspaceFolder}/llvm-project/build/tools/mlir/include"
+                ],
+                "databaseFilename": "${workspaceFolder}/.vscode/vc.db",
+                "limitSymbolsToIncludedHeaders": false
+            }
+        }
+    ],
+    "version": 4
+}
