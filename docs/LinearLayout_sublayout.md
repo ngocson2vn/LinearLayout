@@ -50,11 +50,11 @@ Here is the strict algebraic breakdown of what `layout.sublayout(inDimNames, out
 
 ---
 
-### 1. The Vector Spaces as Direct Sums
+### 1. The Vector Spaces as External Direct Sums
 
 First, we define the full input vector space $V$ and the full output vector space $W$.
 
-In Triton, these spaces are constructed by concatenating (or strictly speaking, taking the direct sum of) the bit-vectors of individual dimensions.
+In Triton, these spaces are constructed by concatenating (or strictly speaking, taking the **external** direct sum of) the bit-vectors of individual dimensions.
 Let's use your previous example with input dimensions "msg" and "block", mapping to output dimensions, say, "out1" and "out2".
 
 * **Input Space ($V$):** $V = V_{\text{msg}} \oplus V_{\text{block}}$
@@ -66,13 +66,18 @@ The full linear layout is the homomorphism $L: V \to W$.
 
 ### 2. The Inclusion Map (Restricting Inputs)
 
-When the code requests `inDimNames` (e.g., just "msg"), it is isolating a subspace of the input. Algebraically, you cannot feed a vector from the subspace $V_{\text{msg}}$ directly into $L$, because $L$ expects a vector from the full space $V$.
+When the code requests `inDimNames` (e.g., just "msg"), it is isolating **an independent dimensional space** of the input. Algebraically, you cannot feed a vector from the dimensional space $V_{\text{msg}}$ directly into $L$, because $L$ expects a vector from the full space $V$.
 
-To bridge this, we define an **inclusion map** (or canonical injection) $\phi: V_{\text{msg}} \hookrightarrow V$.
+To bridge this, we define an **inclusion map** (or canonical injection) $\phi: V_{\text{msg}} \rightarrow V$.
 
-This map takes a vector $\vec{m} \in V_{\text{msg}}$ and maps it into the larger space by padding the missing dimensions with the zero vector $\vec{0} \in V_{\text{block}}$:
+This map takes a vector $\boldsymbol{m} \in V_{\text{msg}}$ and maps it into the larger space by padding the missing dimensions with the zero vector $\boldsymbol{0} \in V_{\text{block}}$:
 
-$\phi(\vec{m}) = \vec{m} \oplus \vec{0}$
+$\phi(\boldsymbol{m}) = \boldsymbol{m} \oplus \boldsymbol{0}$. 
+
+Note that the symbol $\oplus$ is abused here. In this context, it means concatenation. For example, <br/>
+if $\boldsymbol{m}$ is the 4-bit vector `(1,0,1,1)` and $\boldsymbol{0}_{\text{block}}$ is the 2-bit vector `(0,0)`, the inclusion map forms the final 6-bit vector:
+
+$\phi(1011) = (1,0,1,1,0,0)$
 
 *(Note: This directly mirrors why the compiler can drop the zero-padded constant dimensions—it is applying this exact inclusion map).*
 
@@ -82,11 +87,13 @@ $\phi(\vec{m}) = \vec{m} \oplus \vec{0}$
 
 When the code specifies `outDimName` (e.g., just "out1"), it does not want the entire output vector in $W$. It only wants the subspace $W_{\text{out1}}$.
 
-To achieve this, we define a **projection map** $\pi: W \twoheadrightarrow W_{\text{out1}}$.
+To achieve this, we define a **projection map** $\pi: W \rightarrow W_{\text{out1}}$.
 
-This map takes a fully formed output vector $\vec{w} = \vec{w}_1 \oplus \vec{w}_2 \in W$ and annihilates the unwanted components, projecting it down to just the requested subspace:
+This map takes a fully formed output vector $\boldsymbol{w} = \boldsymbol{w}_1 \oplus \boldsymbol{w}_2 \in W$ and annihilates the unwanted components, projecting it down to just the requested subspace:
 
-$\pi(\vec{w}_1 \oplus \vec{w}_2) = \vec{w}_1$
+$\pi(\boldsymbol{w}_1 \oplus \boldsymbol{w}_2) = \boldsymbol{w}_1$
+
+Note that in this context, the symbol $\oplus$ truly means binary XOR operator in $F^2$.
 
 ---
 
@@ -96,7 +103,9 @@ The `sublayout` operation is simply the algebraic composition of these three map
 
 $L_{\text{sub}} = \pi \circ L \circ \phi$
 
-This means $L_{\text{sub}}$ is a strictly defined, entirely new linear map $L_{\text{sub}}: V_{\text{msg}} \to W_{\text{out1}}$. Because the composition of linear maps is always a linear map, $L_{\text{sub}}$ retains all the properties of superposition over $\mathbb{F}_2$.
+This means $L_{\text{sub}}$ is a strictly defined, entirely new linear map $L_{\text{sub}}: V_{\text{msg}} \to W_{\text{out1}}$. 
+
+Because the composition of linear maps is always a linear map, $L_{\text{sub}}$ retains all the properties of superposition over $\mathbb{F}_2$.
 
 ---
 
@@ -105,11 +114,10 @@ The fundamental property of linear maps: **a linear map is uniquely and complete
 
 Here is the strict formulation of the C++ code relying entirely on vector spaces, basis vectors, and linear mappings.
 
-### 1. The Vector Spaces as Direct Sums
+### 1. The Vector Spaces as External Direct Sums
 
 Let $I$ be the set of all input dimension names and $O$ be the set of all output dimension names.
-The total input space $V$ and total output space $W$ are the direct sums of the spaces for each dimension:
-
+The total input space $V$ and total output space $W$ are the external direct sums of the spaces for each dimension:
 
 $V = \bigoplus_{x \in I} V_x$
 
@@ -117,7 +125,6 @@ $W = \bigoplus_{y \in O} W_y$
 
 Let $S \subseteq I$ be the requested input dimensions (`inDimSet`) and $T \subseteq O$ be the requested output dimensions (`outDimSet`).
 The subspaces we are mapping between are:
-
 
 $V_S = \bigoplus_{x \in S} V_x$
 
