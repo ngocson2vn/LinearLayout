@@ -130,16 +130,7 @@ $V_S = \bigoplus_{x \in S} V_x$
 
 $W_T = \bigoplus_{y \in T} W_y$
 
-### 2. The Original Map and the Basis
-
-The original layout is a linear map $L: V \to W$.
-
-Let $E_x$ be the standard basis for the subspace $V_x$. The union $\bigcup_{x \in I} E_x$ forms a complete basis for the total input space $V$.
-
-**Mapping to C++:** The `bases` variable does not store a matrix; it stores the *images* of the basis vectors under $L$.
-When the code iterates `for (auto &basis : inDimBases)`, `basis` represents the vector $w = L(e) \in W$ for some specific basis vector $e \in E_x$.
-
-### 3. The Inclusion Map ($\phi$)
+### 2. The Inclusion Map ($\phi$)
 
 The inclusion map $\phi: V_S \to V$ takes a tuple from the subspace and expands it into a tuple in the full space $V = \bigoplus_{y \in I} V_y$ by padding the missing dimensions with zeros.
 
@@ -155,8 +146,17 @@ For any tuple $(v_x)_{x \in S} \in V_S$, the inclusion map produces a tuple $(u_
 if (!inDimSet.contains(inDim)) {
   continue; 
 }
-
 ```
+
+### 3. The Original Map and the Basis
+
+The original layout is a linear map $L: V \to W$.
+
+Let $E_x$ be the standard basis for the standalone space $V_x$. The union $\bigcup_{x \in I} E_x$ forms a complete basis for the total input space $V$.
+
+**Mapping to C++:** The `bases` variable does not store a matrix; it stores the *images* of the basis vectors under $L$.
+When the code iterates `for (auto &basis : inDimBases)`, `basis` represents the vector $w = L(e) \in W$ for some specific basis vector $e \in E_x$.
+
 
 ### 4. The Projection Map ($\pi$)
 
